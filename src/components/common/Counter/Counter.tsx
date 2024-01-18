@@ -16,7 +16,7 @@ const Counter: React.FC<{
       flexDirection="row"
       justifyContent="space-between"
     >
-      <CountButton onClick={() => handleChange(value - 1)}>
+      <CountButton onClick={() => value !== 1 && handleChange(value - 1)}>
         <RemoveCount />
       </CountButton>
       <Stack

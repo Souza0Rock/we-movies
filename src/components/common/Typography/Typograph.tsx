@@ -6,7 +6,7 @@ const Typography: React.FC<ITypographProps> = ({
   fontSize = 14,
   textTransform = "none",
   fontWeight = 400,
-  color = "#fff",
+  color = "#2F2E41",
   lineHeigth = "normal",
   italic = false,
   ...rest

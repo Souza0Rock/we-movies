@@ -33,6 +33,7 @@ interface IStyleGlobal {
   alignSelf?: "auto" | "center" | "baseline";
   backgroundColor?: string;
   border?: string;
+  borderTop?: string;
   borderRadius?: number;
   cursorPointer?: boolean;
 }

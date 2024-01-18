@@ -8,13 +8,13 @@ export default async function Home() {
 
   return (
     <>
-      {data ? (
+      {/* {data ? ( */}
         <GridCardsMovies data={data} />
-      ) : (
-        <Stack>
-          <LoadingSpinner />
-        </Stack>
-      )}
+      {/* // ) : (
+      //   <Stack>
+      //     <LoadingSpinner />
+      //   </Stack>
+      // )} */}
     </>
   );
 }

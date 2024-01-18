@@ -1,9 +1,48 @@
 import React from "react";
+import styled from "styled-components";
+
+const Container = styled.div`
+  /* .loading-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+  .loading-circle .path {
+    stroke: #5e6ad2;
+    stroke-linecap: round;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
 
 const LoadingSpinner: React.FC = () => {
   return (
-    <h2 style={{ color: "#fff" }}>Spinner</h2>
-    
+    <>aaaa</>
+    // <Container>
+    //   {/* Aqui você pode adicionar uma imagem ou criar um SVG */}
+    //   <svg viewBox="0 0 50 50">
+    //     <circle
+    //       className="path"
+    //       cx="25"
+    //       cy="25"
+    //       r="20"
+    //       fill="red"
+    //       strokeWidth="5"
+    //       color="red"
+    //     ></circle>
+    //   </svg>
+    // </Container>
+    // <h2 style={{ color: "#fff" }}>Spinner</h2>
+
     // <svg
     //   width="84"
     //   height="83"
