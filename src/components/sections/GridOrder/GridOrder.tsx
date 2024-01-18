@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import OrderItem from "@/components/common/OrderItem";
 import Stack from "@/components/common/Stack";
@@ -30,10 +30,10 @@ const GridOrder: React.FC<{ data: TMovie[] }> = ({ data }) => {
     fetchMovies();
   }, [fetchMovies, trigger]);
 
-  const tratando = teste.filter((i) => i.in_shopping_cart) 
+  const tratando = teste.filter((i) => i.in_shopping_cart);
 
   return (
-    <Stack>
+    <Stack p={1} gap={1} borderRadius={0.25} backgroundColor="#fff">
       {tratando.map((i) => (
         <OrderItem key={i.id} data={i} dispatchTrigger={dispatchTrigger} />
       ))}

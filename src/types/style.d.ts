@@ -32,6 +32,7 @@ interface IStyleGlobal {
   flexWrap?: "wrap" | "nowrap" | "wrap-reverse";
   alignSelf?: "auto" | "center" | "baseline";
   backgroundColor?: string;
+  border?: string;
   borderRadius?: number;
   cursorPointer?: boolean;
 }

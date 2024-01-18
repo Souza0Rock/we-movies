@@ -4,6 +4,7 @@ import { putMovie } from "@/services/fetch/putMovie";
 import Image from "next/image";
 import Typography from "../Typography";
 import Trash from "../../../../public/icons/Trash";
+import Counter from "../Counter";
 
 // import { Container } from './styles';
 
@@ -28,21 +29,34 @@ const OrderItem: React.FC<{ data: TMovie; dispatchTrigger: () => void }> = ({
     }
   };
   return (
-    <Stack onClick={teste}>
+    <Stack gap={1} flexDirection="row">
       <Image src={data.image} alt={data.title} width={64} height={82} />
 
-      <Stack>
-        <Stack flexDirection="row" justifyContent="space-between" gap={1}>
-          <Typography>{data.title}</Typography>
-          <Typography>{data.price}</Typography>
+      <Stack width="100%" gap={1}>
+        <Stack
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="center"
+          gap={1}
+        >
+          <Typography color="#2F2E41" fontWeight={700}>
+            {data.title}
+          </Typography>
+          <Typography color="#2F2E41" fontSize={16} fontWeight={700}>
+            R$ {data.price}
+          </Typography>
           <Trash />
         </Stack>
 
-        <Stack flexDirection="row">
-          counter
-          <Stack>
-            <Typography>subtotal</Typography>
-            <Typography>R$ 29,99</Typography>
+        <Stack flexDirection="row" alignItems="center" justifyContent="space-between">
+          <Counter value={data.quantity_in_shopping_cart} handleChange={(e) => {}} />
+          <Stack alignItems="center">
+            <Typography color="#999" fontSize={12} fontWeight={700}>
+              subtotal
+            </Typography>
+            <Typography color="#2F2E41" fontWeight={700}>
+              R$ 29,99
+            </Typography>
           </Stack>
         </Stack>
       </Stack>
