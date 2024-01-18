@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   compiler: {
     styledComponents: true,
@@ -6,10 +7,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "storage.googleapis.com",
-        pathname: "/du-prd/books/images/**",
-        port: "3000" || "3001",
+        hostname: "wefit-react-web-test.s3.amazonaws.com",
       },
     ],
   },

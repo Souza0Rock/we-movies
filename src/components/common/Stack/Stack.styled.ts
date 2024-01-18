@@ -37,7 +37,6 @@ export const Container = styled.div<IStyleGlobal>`
   }) => css`
     flex-direction: ${flexDirection};
     gap: ${calcSpace(gap)};
-
     margin-top: ${calcSpace(mt || my || m)};
     margin-bottom: ${calcSpace(mb || my || m)};
     margin-left: ${calcSpace(ml || mx || m)};

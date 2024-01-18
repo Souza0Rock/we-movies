@@ -8,7 +8,7 @@ export const calcSpace = (space?: number | string) => {
   }
 
   if (typeof space === "string") {
-    return "space";
+    return space;
   }
 
   return space;

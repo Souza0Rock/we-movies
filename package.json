@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "server": "json-server -w ./src/api/db.json -p 8080",
+    "dev": "next dev -p 3001",
+    "server": "json-server -w ./src/api/db.json -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
