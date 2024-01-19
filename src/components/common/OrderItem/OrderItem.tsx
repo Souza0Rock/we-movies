@@ -7,8 +7,6 @@ import Trash from "../../../../public/icons/Trash";
 import Counter from "../Counter";
 import { formatPrice } from "@/utils/formatPrice";
 
-// import { Container } from './styles';
-
 const OrderItem: React.FC<{ data: TMovie; dispatchTrigger: () => void }> = ({
   data,
   dispatchTrigger,

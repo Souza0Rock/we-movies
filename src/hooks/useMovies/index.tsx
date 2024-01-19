@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import { getMovies } from "@/services/fetch/getMovies";
 import { useGlobalData } from "@/contexts/globalData";
+import { getMovies } from "@/services/fetch/getMovies";
 import { putMovie } from "@/services/fetch/putMovie";
 
 const useMovies = () => {
@@ -37,8 +37,15 @@ const useMovies = () => {
       });
     });
 
+    setItemsInCart(0);
+
     return loopMovies;
   };
+
+  const priceTotalCart = moviesInCart.reduce(
+    (total, objeto) => total + objeto.price * objeto.quantity_in_shopping_cart,
+    0
+  );
 
   return {
     movies,
@@ -47,9 +54,10 @@ const useMovies = () => {
     fetchMovies,
     dispatchTrigger,
     data: {
+      priceTotalCart,
       moviesInCart,
       movies,
-    }
+    },
   };
 };
 

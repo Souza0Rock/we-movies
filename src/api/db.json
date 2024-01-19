@@ -1,11 +1,11 @@
 {
   "products": [
     {
-      "in_shopping_cart": false,
-      "quantity_in_shopping_cart": 0,
+      "in_shopping_cart": true,
       "title": "Viúva Negra",
       "price": 9.99,
       "image": "https://wefit-react-web-test.s3.amazonaws.com/viuva-negra.png",
+      "quantity_in_shopping_cart": 4,
       "id": "1"
     },
     {
@@ -13,15 +13,15 @@
       "title": "Shang-chi",
       "price": 30.99,
       "image": "https://wefit-react-web-test.s3.amazonaws.com/shang-chi.png",
-      "quantity_in_shopping_cart": 7,
+      "quantity_in_shopping_cart": 5,
       "id": "2"
     },
     {
-      "in_shopping_cart": false,
-      "quantity_in_shopping_cart": 0,
+      "in_shopping_cart": true,
       "title": "Homem Aranha",
       "price": 29.9,
       "image": "https://wefit-react-web-test.s3.amazonaws.com/spider-man.png",
+      "quantity_in_shopping_cart": 2,
       "id": "3"
     },
     {
