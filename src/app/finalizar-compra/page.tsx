@@ -6,11 +6,15 @@ import { useEffect } from "react";
 import ConfirmPurchase from "../../../public/icons/ConfirmPurchase";
 import Button from "@/components/common/Button";
 import { useRouter } from "next/navigation";
+import useMovies from "@/hooks/useMovies";
 
 export default function FinalizePurchase() {
   const { push } = useRouter();
+  const { clearCart } = useMovies();
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    clearCart();
+  }, [clearCart]);
 
   return (
     <Stack

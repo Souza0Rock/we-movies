@@ -1,51 +1,51 @@
 {
   "products": [
     {
+      "in_shopping_cart": false,
+      "quantity_in_shopping_cart": 0,
       "title": "Viúva Negra",
       "price": 9.99,
       "image": "https://wefit-react-web-test.s3.amazonaws.com/viuva-negra.png",
-      "in_shopping_cart": true,
-      "quantity_in_shopping_cart": 13,
       "id": "1"
     },
     {
+      "in_shopping_cart": true,
       "title": "Shang-chi",
       "price": 30.99,
       "image": "https://wefit-react-web-test.s3.amazonaws.com/shang-chi.png",
-      "in_shopping_cart": true,
-      "quantity_in_shopping_cart": 45,
+      "quantity_in_shopping_cart": 7,
       "id": "2"
     },
     {
+      "in_shopping_cart": false,
+      "quantity_in_shopping_cart": 0,
       "title": "Homem Aranha",
       "price": 29.9,
       "image": "https://wefit-react-web-test.s3.amazonaws.com/spider-man.png",
-      "in_shopping_cart": true,
-      "quantity_in_shopping_cart": 26,
       "id": "3"
     },
     {
+      "in_shopping_cart": false,
+      "quantity_in_shopping_cart": 0,
       "title": "Eternos",
       "price": 17.9,
       "image": "https://wefit-react-web-test.s3.amazonaws.com/eternals.png",
-      "in_shopping_cart": true,
-      "quantity_in_shopping_cart": 12,
       "id": "4"
     },
     {
+      "in_shopping_cart": false,
+      "quantity_in_shopping_cart": 0,
       "title": "Morbius",
       "price": 1.5,
       "image": "https://wefit-react-web-test.s3.amazonaws.com/morbius-1.png",
-      "in_shopping_cart": true,
-      "quantity_in_shopping_cart": 9,
       "id": "5"
     },
     {
+      "in_shopping_cart": false,
+      "quantity_in_shopping_cart": 0,
       "title": "Batman",
       "price": 21.9,
       "image": "https://wefit-react-web-test.s3.amazonaws.com/the-batman.png",
-      "in_shopping_cart": true,
-      "quantity_in_shopping_cart": 18,
       "id": "6"
     }
   ]

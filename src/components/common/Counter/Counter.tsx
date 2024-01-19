@@ -12,6 +12,7 @@ const Counter: React.FC<{
     <Stack
       gap={0.688}
       width="51%"
+      maxWidth="7.5rem"
       alignItems="center"
       flexDirection="row"
       justifyContent="space-between"

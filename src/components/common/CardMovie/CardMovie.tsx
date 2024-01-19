@@ -7,6 +7,7 @@ import Typography from "../Typography";
 import Button from "../Button";
 import ShoppingCart from "../../../../public/icons/ShoppingCart";
 import { putMovie } from "@/services/fetch/putMovie";
+import { formatPrice } from "@/utils/formatPrice";
 
 const CardMovie: React.FC<{ data: TMovie; dispatchTrigger: () => void }> = ({
   data,
@@ -45,7 +46,7 @@ const CardMovie: React.FC<{ data: TMovie; dispatchTrigger: () => void }> = ({
             {data.title}
           </Typography>
           <Typography color="#333333" fontWeight={700} fontSize={12}>
-            R$ {data.price}
+            R$ {formatPrice(data.price)}
           </Typography>
         </Stack>
       </Stack>

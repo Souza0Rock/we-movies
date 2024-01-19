@@ -1,18 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
 import { getMovies } from "@/services/fetch/getMovies";
 import { useGlobalData } from "@/contexts/globalData";
+import { putMovie } from "@/services/fetch/putMovie";
 
-interface UseMoviesResult {
-  movies: TMovie[];
-  itemsInCart: number;
-  fetchMovies: () => void;
-  dispatchTrigger: () => void;
-}
-
-const useMovies = (): UseMoviesResult => {
+const useMovies = () => {
   const { setItemsInCart } = useGlobalData();
 
   const [movies, setMovies] = useState<TMovie[]>([]);
+  const [moviesInCart, setMoviesInCart] = useState<TMovie[]>([]);
   const [trigger, setTrigger] = useState(false);
 
   const dispatchTrigger = () => setTrigger(!trigger);
@@ -21,24 +16,44 @@ const useMovies = (): UseMoviesResult => {
     const data = await getMovies();
     setMovies(data);
 
-    const itemsInCart = data.filter((i) => i.in_shopping_cart).length;
-    setItemsInCart(itemsInCart);
+    const itemsInCart = data.filter((i) => i.in_shopping_cart);
+    setMoviesInCart(itemsInCart);
+
+    setItemsInCart(itemsInCart.length);
   }, [setItemsInCart]);
 
   useEffect(() => {
     fetchMovies();
   }, [fetchMovies, trigger]);
 
+  const clearCart = () => {
+    const loopMovies = moviesInCart.map((movie) => {
+      const { in_shopping_cart, quantity_in_shopping_cart, ...rest } = movie;
+
+      putMovie({
+        in_shopping_cart: false,
+        quantity_in_shopping_cart: 0,
+        ...rest,
+      });
+    });
+
+    return loopMovies;
+  };
+
   return {
     movies,
+    clearCart,
     itemsInCart: movies.filter((i) => i.in_shopping_cart).length,
     fetchMovies,
     dispatchTrigger,
+    data: {
+      moviesInCart,
+      movies,
+    }
   };
 };
 
 export default useMovies;
-
 
 // import { useCallback, useEffect, useState, useMemo } from "react";
 // import { getMovies } from "@/services/fetch/getMovies";
@@ -102,7 +117,6 @@ export default useMovies;
 
 // export default useMovies;
 
-
 // import { useCallback, useEffect, useState, useMemo } from "react";
 // import { getMovies } from "@/services/fetch/getMovies";
 // import { useGlobalData } from "@/contexts/globalData";
@@ -160,9 +174,6 @@ export default useMovies;
 // };
 
 // export default useMovies;
-
-
-
 
 // import { useCallback, useEffect, useState } from "react";
 // import { getMovies } from "@/services/fetch/getMovies";
