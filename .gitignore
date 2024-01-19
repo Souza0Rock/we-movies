@@ -36,4 +36,4 @@ yarn-error.log*
 next-env.d.ts
 
 # api
-src/api/db.json
+./src/api/db.json
