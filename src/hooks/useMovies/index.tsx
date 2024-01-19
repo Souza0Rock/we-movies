@@ -88,9 +88,9 @@ const useMovies = () => {
     addItemInCart,
     dispatchTrigger,
     data: {
-      priceTotalCart,
-      moviesInCart,
       movies,
+      moviesInCart,
+      priceTotalCart,
     },
   };
 };

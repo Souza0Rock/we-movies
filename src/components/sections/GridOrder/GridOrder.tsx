@@ -9,34 +9,14 @@ import Button from "@/components/common/Button";
 import OrderItem from "@/components/common/OrderItem";
 import Typography from "@/components/common/Typography";
 import CartEmpty from "../CartEmpty";
-import styled from "styled-components";
 import Image from "next/image";
 import Counter from "@/components/common/Counter";
 import Trash from "../../../../public/icons/Trash";
+import { Container } from "./GridOrder.styled";
 
 const GridOrder: React.FC = () => {
   const { push } = useRouter();
   const { data, removeItem, addItemInCart } = useMovies();
-
-  const Container = styled(Stack)`
-    height: calc(100vh - 92px);
-
-    .table-default-component {
-      display: none;
-    }
-
-    @media (min-width: 576px) {
-      height: auto;
-
-      .table-default-component {
-        display: inline-table;
-      }
-
-      .items-mobile {
-        display: none;
-      }
-    }
-  `;
 
   const Table = () => {
     return (
@@ -82,9 +62,9 @@ const GridOrder: React.FC = () => {
                   alignItems: "center",
                   gap: 52,
                   width: "fit-content",
+                  paddingBottom: 21,
                 }}
               >
-                {/* <Stack flexDirection="row" alignItems="center" gap={3.25}> */}
                 <Image src={i.image} alt={i.title} width={89} height={114} />
                 <Stack>
                   <Typography fontWeight={700}>{i.title}</Typography>
@@ -92,33 +72,25 @@ const GridOrder: React.FC = () => {
                     R$ {formatPrice(i.price)}
                   </Typography>
                 </Stack>
-                {/* </Stack> */}
               </td>
-              <td>
+              <td style={{ paddingBottom: 21 }}>
                 <Counter
                   value={i.quantity_in_shopping_cart}
                   handleChange={(e) => addItemInCart(i, e)}
                 />
               </td>
-              <td>
+              <td style={{ paddingBottom: 21 }}>
                 <Typography fontSize={16} fontWeight={700}>
                   R$ {formatPrice(i.price * i.quantity_in_shopping_cart)}
                 </Typography>
               </td>
-              <td>
+              <td style={{ paddingBottom: 21 }}>
                 <Stack cursorPointer onClick={() => removeItem(i)}>
                   <Trash />
                 </Stack>
               </td>
             </tr>
           ))}
-          {/* {usuarios.map(usuario => (
-            <tr key={usuario.id}>
-              <td>{usuario.id}</td>
-              <td>{usuario.nome}</td>
-              <td>{usuario.idade}</td>
-            </tr>
-          ))} */}
         </tbody>
       </table>
     );
@@ -134,7 +106,7 @@ const GridOrder: React.FC = () => {
     >
       <Table />
 
-      <Stack className="items-mobile">
+      <Stack className="items-mobile" gap={1.313}>
         {data.moviesInCart.map((i) => (
           <OrderItem
             key={i.id}
@@ -145,7 +117,12 @@ const GridOrder: React.FC = () => {
         ))}
       </Stack>
 
-      <Stack borderTop="1px solid #999" pt={1.313} gap={1}>
+      <Stack
+        className="box-confirm-order"
+        borderTop="1px solid #999"
+        pt={1.313}
+        gap={1}
+      >
         <Stack
           px={1}
           gap={2}

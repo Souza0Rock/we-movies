@@ -44,11 +44,16 @@ const CardMovie: React.FC<{
         <Stack flexDirection="row" gap={0.75}>
           <Stack flexDirection="row" alignItems="flex-end" gap={0.213}>
             <ShoppingCart />
-            <Typography fontSize={12}>
+            <Typography fontSize={12} color="#fff">
               {data.quantity_in_shopping_cart}
             </Typography>
           </Stack>
-          <Typography fontWeight={700} fontSize={12} textTransform="uppercase">
+          <Typography
+            fontWeight={700}
+            fontSize={12}
+            textTransform="uppercase"
+            color="#fff"
+          >
             {data.in_shopping_cart
               ? "item adicionado"
               : "adicionar ao carrinho"}
