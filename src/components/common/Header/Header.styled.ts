@@ -15,11 +15,10 @@ export const Container = styled(Stack)`
   }
 
   @media (min-width: 992px) {
+    padding: 1.125rem 15.313rem;
+
     .text-my-cart {
       display: initial;
     }
-
-    margin-bottom: 1.5rem;
-    padding: 1.125rem 15.313rem;
   }
 `;

@@ -7,15 +7,18 @@ import { useRouter } from "next/navigation";
 import { Container, TextLink } from "./Header.styled";
 
 const Header: React.FC = () => {
-  const { itemsInCart } = useGlobalData();
   const { push } = useRouter();
+  const { itemsInCart } = useGlobalData();
 
   return (
     <Container
       px={0.625}
       py={1.125}
+      width="100%"
+      position="fixed"
       alignItems="center"
       flexDirection="row"
+      backgroundColor="#2F2E41"
       justifyContent="space-between"
     >
       <TextLink href="/">WeMovies</TextLink>

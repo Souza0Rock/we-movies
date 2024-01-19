@@ -29,6 +29,10 @@ export const Container = styled(Stack)`
     }
   }
 
+  @media (min-width: 992px) {
+    min-height: calc(100vh - 175px);
+  }
+
   @media (min-width: 1200px) {
     margin: 0 6.25rem;
   }

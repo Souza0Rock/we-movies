@@ -11,7 +11,7 @@ const BaseLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <GlobalDataProvider>
       <Stack minHeight="100vh" backgroundColor="#2F2E41">
         <Header />
-        <ContainerChildren mx={1} mb={1.5}>
+        <ContainerChildren mt={4.25} mx={1} mb={1}>
           {children}
         </ContainerChildren>
       </Stack>

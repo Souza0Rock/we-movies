@@ -37,7 +37,10 @@ export const Container = styled.div<IStyleGlobal>`
     border = "none",
     borderTop,
     borderBottom,
+    position = "initial",
   }) => css`
+    position: ${position};
+
     flex-direction: ${flexDirection};
     gap: ${calcSpace(gap)};
     margin-top: ${calcSpace(mt || my || m)};

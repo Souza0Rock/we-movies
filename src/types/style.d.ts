@@ -37,4 +37,5 @@ interface IStyleGlobal {
   borderBottom?: string;
   borderRadius?: number;
   cursorPointer?: boolean;
+  position?: "fixed" | "relative" | "absolute" | "initial";
 }
