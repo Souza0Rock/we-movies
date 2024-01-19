@@ -65,11 +65,12 @@ const useMovies = () => {
   };
 
   const addItemInCart = async (data: TMovie, value: number) => {
-    const { quantity_in_shopping_cart, ...prev } = data;
+    const { quantity_in_shopping_cart, in_shopping_cart, ...prev } = data;
 
     const payload = {
       ...prev,
       quantity_in_shopping_cart: value,
+      in_shopping_cart: true,
     };
 
     try {

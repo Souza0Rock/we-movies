@@ -6,12 +6,12 @@ import Stack from "@/components/common/Stack";
 import CardMovie from "@/components/common/CardMovie";
 
 const GridCardsMovies: React.FC = () => {
-  const { data, dispatchTrigger } = useMovies();
+  const { data, addItemInCart } = useMovies();
 
   return (
-    <Stack flexDirection="column" gap={1}>
+    <Stack flexDirection="row" justifyContent="center" flexWrap="wrap" gap={1}>
       {data.movies.map((i) => (
-        <CardMovie key={i.id} data={i} dispatchTrigger={dispatchTrigger} />
+        <CardMovie key={i.id} data={i} addItemInCart={addItemInCart} />
       ))}
     </Stack>
   );

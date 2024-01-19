@@ -6,37 +6,22 @@ import Image from "next/image";
 import Typography from "../Typography";
 import Button from "../Button";
 import ShoppingCart from "../../../../public/icons/ShoppingCart";
-import { putMovie } from "@/services/fetch/putMovie";
 import { formatPrice } from "@/utils/formatPrice";
+import { Container } from "./CardMovie.styled";
 
-const CardMovie: React.FC<{ data: TMovie; dispatchTrigger: () => void }> = ({
-  data,
-  dispatchTrigger,
-}) => {
-  const teste = async () => {
-    const { quantity_in_shopping_cart, ...resto } = data;
-
-    const payload = {
-      ...resto,
-      quantity_in_shopping_cart: quantity_in_shopping_cart + 1,
-      in_shopping_cart: true,
-    };
-
-    try {
-      putMovie(payload);
-      dispatchTrigger();
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+const CardMovie: React.FC<{
+  data: TMovie;
+  addItemInCart: (data: TMovie, value: number) => void;
+}> = ({ data, addItemInCart }) => {
   return (
-    <Stack
+    <Container
       gap={0.5}
       px={0.688}
       py={0.625}
-      borderRadius={0.25}
+      width="100%"
+      maxWidth="21.5rem"
       alignItems="center"
+      borderRadius={0.25}
       backgroundColor="#fff"
     >
       <Stack gap={0.438}>
@@ -53,7 +38,7 @@ const CardMovie: React.FC<{ data: TMovie; dispatchTrigger: () => void }> = ({
 
       <Button
         width="100%"
-        onClick={teste}
+        onClick={() => addItemInCart(data, data.quantity_in_shopping_cart + 1)}
         backgrounColor={data.in_shopping_cart ? "#039B00" : "#009EDD"}
       >
         <Stack flexDirection="row" gap={0.75}>
@@ -70,7 +55,7 @@ const CardMovie: React.FC<{ data: TMovie; dispatchTrigger: () => void }> = ({
           </Typography>
         </Stack>
       </Button>
-    </Stack>
+    </Container>
   );
 };
 
