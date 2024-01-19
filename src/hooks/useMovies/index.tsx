@@ -22,6 +22,11 @@ const useMovies = () => {
     setItemsInCart(itemsInCart.length);
   }, [setItemsInCart]);
 
+  const priceTotalCart = moviesInCart.reduce(
+    (total, objeto) => total + objeto.price * objeto.quantity_in_shopping_cart,
+    0
+  );
+
   useEffect(() => {
     fetchMovies();
   }, [fetchMovies, trigger]);
@@ -42,15 +47,26 @@ const useMovies = () => {
     return loopMovies;
   };
 
-  const priceTotalCart = moviesInCart.reduce(
-    (total, objeto) => total + objeto.price * objeto.quantity_in_shopping_cart,
-    0
-  );
+  const removeItem = async (data: TMovie) => {
+    const { quantity_in_shopping_cart, ...resto } = data;
+
+    const payload = {
+      ...resto,
+      quantity_in_shopping_cart: 0,
+      in_shopping_cart: false,
+    };
+
+    try {
+      putMovie(payload);
+      dispatchTrigger();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return {
-    movies,
     clearCart,
-    itemsInCart: movies.filter((i) => i.in_shopping_cart).length,
+    removeItem,
     fetchMovies,
     dispatchTrigger,
     data: {

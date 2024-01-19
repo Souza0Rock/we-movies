@@ -1,32 +1,17 @@
 import React from "react";
-import Stack from "../Stack";
-import { putMovie } from "@/services/fetch/putMovie";
 import Image from "next/image";
-import Typography from "../Typography";
-import Trash from "../../../../public/icons/Trash";
-import Counter from "../Counter";
+import { putMovie } from "@/services/fetch/putMovie";
 import { formatPrice } from "@/utils/formatPrice";
+import Typography from "../Typography";
+import Counter from "../Counter";
+import Stack from "../Stack";
+import Trash from "../../../../public/icons/Trash";
 
-const OrderItem: React.FC<{ data: TMovie; dispatchTrigger: () => void }> = ({
-  data,
-  dispatchTrigger,
-}) => {
-  const removeItem = async () => {
-    const { quantity_in_shopping_cart, ...resto } = data;
-
-    const payload = {
-      ...resto,
-      quantity_in_shopping_cart: 0,
-      in_shopping_cart: false,
-    };
-
-    try {
-      putMovie(payload);
-      dispatchTrigger();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+const OrderItem: React.FC<{
+  data: TMovie;
+  dispatchTrigger: () => void;
+  removeItem: (data: TMovie) => void;
+}> = ({ data, dispatchTrigger, removeItem }) => {
 
   const subtotal = data.price * data.quantity_in_shopping_cart;
 
@@ -64,7 +49,7 @@ const OrderItem: React.FC<{ data: TMovie; dispatchTrigger: () => void }> = ({
             R$ {formatPrice(data.price)}
           </Typography>
 
-          <Stack onClick={removeItem}>
+          <Stack onClick={() => removeItem(data)}>
             <Trash />
           </Stack>
         </Stack>
