@@ -6,6 +6,8 @@ import { putMovie } from "@/services/fetch/putMovie";
 const useMovies = () => {
   const { setItemsInCart } = useGlobalData();
 
+  const [loading, setLoading] = useState(false);
+
   const [movies, setMovies] = useState<TMovie[]>([]);
   const [moviesInCart, setMoviesInCart] = useState<TMovie[]>([]);
   const [trigger, setTrigger] = useState(false);
@@ -13,14 +15,29 @@ const useMovies = () => {
   const dispatchTrigger = () => setTrigger(!trigger);
 
   const fetchMovies = useCallback(async () => {
-    const data = await getMovies();
-    setMovies(data);
+    movies.length === 0 && setLoading(true);
 
-    const itemsInCart = data.filter((i) => i.in_shopping_cart);
-    setMoviesInCart(itemsInCart);
+    try {
+      if (movies.length === 0) {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+      }
 
-    setItemsInCart(itemsInCart.length);
-  }, [setItemsInCart]);
+      const data = await getMovies();
+      setMovies(data);
+
+      const itemsInCart = data.filter((i) => i.in_shopping_cart);
+      setMoviesInCart(itemsInCart);
+
+      setItemsInCart(itemsInCart.length);
+
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }, [movies.length, setItemsInCart]);
 
   const priceTotalCart = moviesInCart.reduce(
     (total, objeto) => total + objeto.price * objeto.quantity_in_shopping_cart,
@@ -87,6 +104,7 @@ const useMovies = () => {
     fetchMovies,
     addItemInCart,
     dispatchTrigger,
+    loading,
     data: {
       movies,
       moviesInCart,

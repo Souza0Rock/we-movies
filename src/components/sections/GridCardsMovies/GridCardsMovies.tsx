@@ -4,11 +4,14 @@ import React from "react";
 import useMovies from "@/hooks/useMovies";
 import Stack from "@/components/common/Stack";
 import CardMovie from "@/components/common/CardMovie";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 
 const GridCardsMovies: React.FC = () => {
-  const { data, addItemInCart } = useMovies();
+  const { data, addItemInCart, loading } = useMovies();
 
-  return (
+  return loading ? (
+    <LoadingSpinner />
+  ) : (
     <Stack flexDirection="row" justifyContent="center" flexWrap="wrap" gap={1}>
       {data.movies.map((i) => (
         <CardMovie key={i.id} data={i} addItemInCart={addItemInCart} />

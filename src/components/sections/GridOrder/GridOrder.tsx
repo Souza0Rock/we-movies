@@ -13,10 +13,11 @@ import Image from "next/image";
 import Counter from "@/components/common/Counter";
 import Trash from "../../../../public/icons/Trash";
 import { Container } from "./GridOrder.styled";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 
 const GridOrder: React.FC = () => {
   const { push } = useRouter();
-  const { data, removeItem, addItemInCart } = useMovies();
+  const { data, loading, removeItem, addItemInCart } = useMovies();
 
   const Table = () => {
     return (
@@ -96,56 +97,60 @@ const GridOrder: React.FC = () => {
     );
   };
 
-  return data.moviesInCart.length > 0 ? (
-    <Container
-      p={1}
-      gap={1.375}
-      borderRadius={0.25}
-      backgroundColor="#fff"
-      justifyContent="space-between"
-    >
-      <Table />
-
-      <Stack className="items-mobile" gap={1.313}>
-        {data.moviesInCart.map((i) => (
-          <OrderItem
-            key={i.id}
-            data={i}
-            removeItem={removeItem}
-            addItemInCart={addItemInCart}
-          />
-        ))}
-      </Stack>
-
-      <Stack
-        className="box-confirm-order"
-        borderTop="1px solid #999"
-        pt={1.313}
-        gap={1}
+  return !loading ? (
+    data.moviesInCart.length > 0 ? (
+      <Container
+        p={1}
+        gap={1.375}
+        borderRadius={0.25}
+        backgroundColor="#fff"
+        justifyContent="space-between"
       >
-        <Stack
-          px={1}
-          gap={2}
-          alignItems="center"
-          flexDirection="row"
-          justifyContent="flex-end"
-        >
-          <Typography color="#999" fontWeight={700} textTransform="uppercase">
-            Total
-          </Typography>
-          <Typography fontSize={24} fontWeight={700}>
-            R$ {formatPrice(data.priceTotalCart)}
-          </Typography>
+        <Table />
+
+        <Stack className="items-mobile" gap={1.313}>
+          {data.moviesInCart.map((i) => (
+            <OrderItem
+              key={i.id}
+              data={i}
+              removeItem={removeItem}
+              addItemInCart={addItemInCart}
+            />
+          ))}
         </Stack>
-        <Button onClick={() => push("/finalizar-compra")}>
-          <Typography color="#fff" textTransform="uppercase" fontWeight={700}>
-            finalizar pedido
-          </Typography>
-        </Button>
-      </Stack>
-    </Container>
+
+        <Stack
+          className="box-confirm-order"
+          borderTop="1px solid #999"
+          pt={1.313}
+          gap={1}
+        >
+          <Stack
+            px={1}
+            gap={2}
+            alignItems="center"
+            flexDirection="row"
+            justifyContent="flex-end"
+          >
+            <Typography color="#999" fontWeight={700} textTransform="uppercase">
+              Total
+            </Typography>
+            <Typography fontSize={24} fontWeight={700}>
+              R$ {formatPrice(data.priceTotalCart)}
+            </Typography>
+          </Stack>
+          <Button onClick={() => push("/finalizar-compra")}>
+            <Typography color="#fff" textTransform="uppercase" fontWeight={700}>
+              finalizar pedido
+            </Typography>
+          </Button>
+        </Stack>
+      </Container>
+    ) : (
+      <CartEmpty />
+    )
   ) : (
-    <CartEmpty />
+    <LoadingSpinner />
   );
 };
 

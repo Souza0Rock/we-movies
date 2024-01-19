@@ -5,16 +5,19 @@ import Typography from "@/components/common/Typography";
 import Button from "@/components/common/Button";
 import ConfirmPurchase from "../../../../public/icons/ConfirmPurchase";
 import { Container } from "./FinishPurchase.styled";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 
 const FinishPurchase: React.FC = () => {
   const { push } = useRouter();
-  const { clearCart } = useMovies();
+  const { loading, clearCart } = useMovies();
 
   useEffect(() => {
     clearCart();
   }, [clearCart]);
 
-  return (
+  return loading ? (
+    <LoadingSpinner />
+  ) : (
     <Container
       px={1}
       py={4}
