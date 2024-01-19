@@ -1,5 +1,5 @@
 import GridCardsMovies from "@/components/sections/GridCardsMovies";
 
-export default function Home() {
+export default async function Home() {
   return <GridCardsMovies />;
 }

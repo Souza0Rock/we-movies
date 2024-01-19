@@ -8,12 +8,13 @@ import Stack from "@/components/common/Stack";
 import Button from "@/components/common/Button";
 import OrderItem from "@/components/common/OrderItem";
 import Typography from "@/components/common/Typography";
+import CartEmpty from "../CartEmpty";
 
 const GridOrder: React.FC = () => {
   const { push } = useRouter();
   const { data, removeItem, addItemInCart } = useMovies();
 
-  return (
+  return data.moviesInCart.length > 0 ? (
     <Stack p={1} gap={1.375} borderRadius={0.25} backgroundColor="#fff">
       {data.moviesInCart.map((i) => (
         <OrderItem
@@ -46,6 +47,8 @@ const GridOrder: React.FC = () => {
         </Button>
       </Stack>
     </Stack>
+  ) : (
+    <CartEmpty />
   );
 };
 

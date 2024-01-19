@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { putMovie } from "@/services/fetch/putMovie";
 import { formatPrice } from "@/utils/formatPrice";
 import Typography from "../Typography";
 import Counter from "../Counter";

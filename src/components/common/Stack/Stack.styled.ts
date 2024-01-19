@@ -36,6 +36,7 @@ export const Container = styled.div<IStyleGlobal>`
     cursorPointer = false,
     border = "none",
     borderTop,
+    borderBottom,
   }) => css`
     flex-direction: ${flexDirection};
     gap: ${calcSpace(gap)};
@@ -52,6 +53,7 @@ export const Container = styled.div<IStyleGlobal>`
     border-radius: ${calcSpace(borderRadius)};
     border: ${border};
     border-top: ${borderTop || border};
+    border-bottom: ${borderBottom || border};
 
     max-width: ${maxWidth};
     min-width: ${minWidth};

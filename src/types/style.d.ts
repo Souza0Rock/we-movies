@@ -34,6 +34,7 @@ interface IStyleGlobal {
   backgroundColor?: string;
   border?: string;
   borderTop?: string;
+  borderBottom?: string;
   borderRadius?: number;
   cursorPointer?: boolean;
 }
