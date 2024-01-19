@@ -4,8 +4,8 @@
       "title": "Viúva Negra",
       "price": 9.99,
       "image": "https://wefit-react-web-test.s3.amazonaws.com/viuva-negra.png",
-      "quantity_in_shopping_cart": 2,
-      "in_shopping_cart": true,
+      "in_shopping_cart": false,
+      "quantity_in_shopping_cart": 0,
       "id": "1"
     },
     {

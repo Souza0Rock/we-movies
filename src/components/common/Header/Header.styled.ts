@@ -20,6 +20,6 @@ export const Container = styled(Stack)`
     }
 
     margin-bottom: 1.5rem;
-    padding: 1.125rem 15rem;
+    padding: 1.125rem 15.313rem;
   }
 `;

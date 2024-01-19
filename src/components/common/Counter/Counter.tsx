@@ -2,7 +2,7 @@ import React from "react";
 import Stack from "../Stack";
 import AddCount from "../../../../public/icons/AddCount";
 import RemoveCount from "../../../../public/icons/RemoveCount";
-import { CountButton } from "./Counter.styled";
+import { CountButton, InputNumber } from "./Counter.styled";
 
 const Counter: React.FC<{
   value: number;
@@ -20,7 +20,8 @@ const Counter: React.FC<{
       <CountButton onClick={() => value !== 1 && handleChange(value - 1)}>
         <RemoveCount />
       </CountButton>
-      <Stack
+      <InputNumber type="number" value={value} readOnly />
+      {/* <Stack
         px={0.75}
         width="100%"
         maxWidth="3.875rem"
@@ -28,7 +29,7 @@ const Counter: React.FC<{
         border="1px solid #D9D9D9"
       >
         {value}
-      </Stack>
+      </Stack> */}
       <CountButton onClick={() => handleChange(value + 1)}>
         <AddCount />
       </CountButton>

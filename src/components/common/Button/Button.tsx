@@ -1,5 +1,5 @@
 import React from "react";
-import Stack from "../Stack";
+import { ButtonComponent } from "./Button.styled";
 
 const Button: React.FC<IButtonProps> = ({
   children,
@@ -8,20 +8,20 @@ const Button: React.FC<IButtonProps> = ({
   backgrounColor = "#009EDD",
 }) => {
   return (
-    <Stack
+    <ButtonComponent
       p={0.5}
       width={width}
       onClick={onClick}
       alignItems="center"
-      borderRadius={0.25}
       flexDirection="row"
       justifyContent="center"
       backgroundColor={backgrounColor}
       className="button-default-component"
+      borderRadius={0.25}
       cursorPointer
     >
       {children}
-    </Stack>
+    </ButtonComponent>
   );
 };
 
