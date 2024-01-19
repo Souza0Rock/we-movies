@@ -33,12 +33,12 @@ const useMovies = () => {
 
   const clearCart = () => {
     const loopMovies = moviesInCart.map((movie) => {
-      const { in_shopping_cart, quantity_in_shopping_cart, ...rest } = movie;
+      const { in_shopping_cart, quantity_in_shopping_cart, ...prev } = movie;
 
       putMovie({
         in_shopping_cart: false,
         quantity_in_shopping_cart: 0,
-        ...rest,
+        ...prev,
       });
     });
 
@@ -48,12 +48,28 @@ const useMovies = () => {
   };
 
   const removeItem = async (data: TMovie) => {
-    const { quantity_in_shopping_cart, ...resto } = data;
+    const { quantity_in_shopping_cart, ...prev } = data;
 
     const payload = {
-      ...resto,
+      ...prev,
       quantity_in_shopping_cart: 0,
       in_shopping_cart: false,
+    };
+
+    try {
+      putMovie(payload);
+      dispatchTrigger();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const addItemInCart = async (data: TMovie, value: number) => {
+    const { quantity_in_shopping_cart, ...prev } = data;
+
+    const payload = {
+      ...prev,
+      quantity_in_shopping_cart: value,
     };
 
     try {
@@ -68,6 +84,7 @@ const useMovies = () => {
     clearCart,
     removeItem,
     fetchMovies,
+    addItemInCart,
     dispatchTrigger,
     data: {
       priceTotalCart,
@@ -78,176 +95,3 @@ const useMovies = () => {
 };
 
 export default useMovies;
-
-// import { useCallback, useEffect, useState, useMemo } from "react";
-// import { getMovies } from "@/services/fetch/getMovies";
-// import { useGlobalData } from "@/contexts/globalData";
-
-// interface UseMoviesOptions {
-//   trigger?: boolean;
-// }
-
-// const useMovies = () => {
-//   const { setItemsInCart } = useGlobalData();
-
-//   const [triggerTeste, setTriggerTeste] = useState(true);
-//   const [triggerCount, setTriggerCount] = useState(0);
-//   const dispatchTriggerTeste = () => {
-//     setTriggerTeste(!triggerTeste);
-//     setTriggerCount(triggerCount + 1);
-//   };
-
-//   const [loading, setLoading] = useState(false);
-//   const [movies, setMovies] = useState<TMovie[]>([]);
-//   const [moviesInCart, setMoviesInCart] = useState<TMovie[]>([]);
-
-//   const fetchMovies = useCallback(async () => {
-//     setLoading(true);
-
-//     try {
-//       const dataGeneric = await getMovies();
-//       setMovies(dataGeneric);
-
-//       const dataInCart = dataGeneric.filter((i) => i.in_shopping_cart);
-//       setMoviesInCart(dataInCart);
-
-//       setItemsInCart(dataInCart.length);
-
-//       setLoading(false);
-//     } catch (error) {
-//       setLoading(false);
-//     } finally {
-//       setLoading(false);
-//     }
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, [setItemsInCart]);
-
-//   useEffect(() => {
-//     fetchMovies();
-//   }, [fetchMovies, triggerCount]);
-
-//   const memoizedValues = useMemo(
-//     () => ({
-//       dispatchTriggerTeste,
-//       loading,
-//       dataGeneric: movies,
-//       itemsInCart: { data: moviesInCart, totalItems: moviesInCart.length },
-//     }),
-//     [dispatchTriggerTeste, loading, movies, moviesInCart]
-//   );
-
-//   return memoizedValues;
-// };
-
-// export default useMovies;
-
-// import { useCallback, useEffect, useState, useMemo } from "react";
-// import { getMovies } from "@/services/fetch/getMovies";
-// import { useGlobalData } from "@/contexts/globalData";
-
-// interface UseMoviesOptions {
-//   trigger?: boolean;
-// }
-
-// const useMovies = () => {
-//   const { setItemsInCart } = useGlobalData();
-
-//   const [triggerTeste, setTriggerTeste] = useState(true);
-//   const dispatchTriggerTeste = () => setTriggerTeste(!triggerTeste);
-
-//   const [loading, setLoading] = useState(false);
-//   const [movies, setMovies] = useState<TMovie[]>([]);
-//   const [moviesInCart, setMoviesInCart] = useState<TMovie[]>([]);
-
-//   const fetchMovies = useCallback(async () => {
-//     setLoading(true);
-
-//     try {
-//       const dataGeneric = await getMovies();
-//       setMovies(dataGeneric);
-
-//       const dataInCart = dataGeneric.filter((i) => i.in_shopping_cart);
-//       setMoviesInCart(dataInCart);
-
-//       setItemsInCart(dataInCart.length);
-
-//       setLoading(false);
-//     } catch (error) {
-//       setLoading(false);
-//     } finally {
-//       setLoading(false);
-//     }
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, [setItemsInCart]);
-
-//   useEffect(() => {
-//     fetchMovies();
-//   }, [fetchMovies, triggerTeste]);
-
-//   const memoizedValues = useMemo(
-//     () => ({
-//       dispatchTriggerTeste,
-//       loading,
-//       dataGeneric: movies,
-//       itemsInCart: { data: moviesInCart, totalItems: moviesInCart.length },
-//     }),
-//     [dispatchTriggerTeste, loading, movies, moviesInCart]
-//   );
-
-//   return memoizedValues;
-// };
-
-// export default useMovies;
-
-// import { useCallback, useEffect, useState } from "react";
-// import { getMovies } from "@/services/fetch/getMovies";
-// import { useGlobalData } from "@/contexts/globalData";
-
-// interface UseMoviesOptions {
-//   trigger?: boolean;
-// }
-
-// const useMovies = () => {
-//   const { setItemsInCart } = useGlobalData();
-
-//   const [triggerTeste, setTriggerTeste] = useState(true);
-//   const dispatchTriggerTeste = () => setTriggerTeste(!triggerTeste);
-
-//   const [loading, setLoading] = useState(false);
-//   const [movies, setMovies] = useState<TMovie[]>([]);
-//   const [moviesInCart, setMoviesInCart] = useState<TMovie[]>([]);
-
-//   const fetchMovies = useCallback(async () => {
-//     setLoading(true);
-
-//     try {
-//       const dataGeneric = await getMovies();
-//       setMovies(dataGeneric);
-
-//       const dataInCart = dataGeneric.filter((i) => i.in_shopping_cart);
-//       setMoviesInCart(dataInCart);
-
-//       setItemsInCart(dataInCart.length);
-
-//       setLoading(false);
-//     } catch (error) {
-//       setLoading(false);
-//     } finally {
-//       setLoading(false);
-//     }
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//   }, [setItemsInCart]);
-
-//   useEffect(() => {
-//     fetchMovies();
-//   }, [fetchMovies, triggerTeste]);
-
-//   return {
-//     dispatchTriggerTeste,
-//     loading,
-//     dataGeneric: movies,
-//     itemsInCart: { data: moviesInCart, totalItems: moviesInCart.length },
-//   };
-// };
-
-// export default useMovies;

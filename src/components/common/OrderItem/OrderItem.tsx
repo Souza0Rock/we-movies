@@ -9,27 +9,10 @@ import Trash from "../../../../public/icons/Trash";
 
 const OrderItem: React.FC<{
   data: TMovie;
-  dispatchTrigger: () => void;
   removeItem: (data: TMovie) => void;
-}> = ({ data, dispatchTrigger, removeItem }) => {
-
+  addItemInCart: (data: TMovie, value: number) => void;
+}> = ({ data, removeItem, addItemInCart }) => {
   const subtotal = data.price * data.quantity_in_shopping_cart;
-
-  const addItem = async (value: number) => {
-    const { quantity_in_shopping_cart, ...resto } = data;
-
-    const payload = {
-      ...resto,
-      quantity_in_shopping_cart: value,
-    };
-
-    try {
-      putMovie(payload);
-      dispatchTrigger();
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <Stack gap={1} flexDirection="row">
@@ -61,7 +44,7 @@ const OrderItem: React.FC<{
         >
           <Counter
             value={data.quantity_in_shopping_cart}
-            handleChange={(e) => addItem(e)}
+            handleChange={(e) => addItemInCart(data, e)}
           />
           <Stack alignItems="center">
             <Typography

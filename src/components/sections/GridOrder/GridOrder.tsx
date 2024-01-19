@@ -11,7 +11,7 @@ import Typography from "@/components/common/Typography";
 
 const GridOrder: React.FC = () => {
   const { push } = useRouter();
-  const { data, dispatchTrigger, removeItem } = useMovies();
+  const { data, removeItem, addItemInCart } = useMovies();
 
   return (
     <Stack p={1} gap={1.375} borderRadius={0.25} backgroundColor="#fff">
@@ -20,7 +20,7 @@ const GridOrder: React.FC = () => {
           key={i.id}
           data={i}
           removeItem={removeItem}
-          dispatchTrigger={dispatchTrigger}
+          addItemInCart={addItemInCart}
         />
       ))}
 
