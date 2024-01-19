@@ -4,22 +4,14 @@ import Typography from "../Typography";
 import ShoppingBag from "../../../../public/icons/ShoppingBag";
 import { useGlobalData } from "@/contexts/globalData";
 import { useRouter } from "next/navigation";
-import styled from "styled-components";
-import Link from "next/link";
+import { Container, TextLink } from "./Header.styled";
 
 const Header: React.FC = () => {
   const { itemsInCart } = useGlobalData();
   const { push } = useRouter();
 
-  const TextLink = styled(Link)`
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 700;
-    color: #fff;
-  `;
-
   return (
-    <Stack
+    <Container
       px={0.625}
       py={1.125}
       alignItems="center"
@@ -27,19 +19,23 @@ const Header: React.FC = () => {
       justifyContent="space-between"
     >
       <TextLink href="/">WeMovies</TextLink>
-      {/* <Typography fontSize={20} fontWeight={700} onClick={}>
-        WeMovies
-      </Typography> */}
       <Stack
         gap={0.5}
         alignItems="center"
         flexDirection="row"
         onClick={() => push("/carrinho")}
       >
-        <Typography color="#999">{itemsInCart} items</Typography>
+        <Stack alignItems="flex-end">
+          <Typography color="#fff" fontWeight={600} className="text-my-cart">
+            Meu Carrinho
+          </Typography>
+          <Typography color="#999" fontWeight={600}>
+            {itemsInCart} itens
+          </Typography>
+        </Stack>
         <ShoppingBag />
       </Stack>
-    </Stack>
+    </Container>
   );
 };
 
