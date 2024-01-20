@@ -20,16 +20,9 @@ const Counter: React.FC<{
       <CountButton onClick={() => value !== 1 && handleChange(value - 1)}>
         <RemoveCount />
       </CountButton>
+
       <InputNumber type="number" value={value} readOnly />
-      {/* <Stack
-        px={0.75}
-        width="100%"
-        maxWidth="3.875rem"
-        borderRadius={0.25}
-        border="1px solid #D9D9D9"
-      >
-        {value}
-      </Stack> */}
+
       <CountButton onClick={() => handleChange(value + 1)}>
         <AddCount />
       </CountButton>

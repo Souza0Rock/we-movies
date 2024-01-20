@@ -9,7 +9,7 @@ const Typography: React.FC<ITypographProps> = ({
   color = "#2F2E41",
   lineHeigth = "normal",
   italic = false,
-  ...rest
+  ...props
 }) => {
   return (
     <Text
@@ -17,10 +17,10 @@ const Typography: React.FC<ITypographProps> = ({
       textTransform={textTransform}
       fontWeight={fontWeight}
       color={color}
-      cursorPointer={rest.onClick ? true : false}
+      cursorPointer={props.onClick ? true : false}
       lineHeigth={lineHeigth}
       italic={italic}
-      {...rest}
+      {...props}
     >
       {children}
     </Text>

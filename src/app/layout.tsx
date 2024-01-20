@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import BaseLayout from "@/components/layouts/BaseLayout";
+import StyledComponentsRegistry from "@/components/layouts/StyledComponentsRegistry";
 import "../style/globals.css";
 
 const font = Open_Sans({ subsets: ["latin"] });
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <BaseLayout>{children}</BaseLayout>
+        <StyledComponentsRegistry>
+          <BaseLayout>{children}</BaseLayout>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );

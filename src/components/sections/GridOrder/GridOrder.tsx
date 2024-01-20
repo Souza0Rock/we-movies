@@ -9,93 +9,13 @@ import Button from "@/components/common/Button";
 import OrderItem from "@/components/common/OrderItem";
 import Typography from "@/components/common/Typography";
 import CartEmpty from "../CartEmpty";
-import Image from "next/image";
-import Counter from "@/components/common/Counter";
-import Trash from "../../../../public/icons/Trash";
 import { Container } from "./GridOrder.styled";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
+import Table from "@/components/common/Table/Table";
 
 const GridOrder: React.FC = () => {
   const { push } = useRouter();
   const { data, loading, removeItem, addItemInCart } = useMovies();
-
-  const Table = () => {
-    return (
-      <table className="table-default-component">
-        <thead style={{ marginBottom: 21 }}>
-          <tr>
-            <th align="left" style={{ paddingBottom: 21 }}>
-              <Typography
-                color="#999"
-                fontWeight={700}
-                textTransform="uppercase"
-              >
-                produto
-              </Typography>
-            </th>
-            <th align="left" style={{ paddingBottom: 21 }}>
-              <Typography
-                color="#999"
-                fontWeight={700}
-                textTransform="uppercase"
-              >
-                qtd
-              </Typography>
-            </th>
-            <th align="left" style={{ paddingBottom: 21 }}>
-              <Typography
-                color="#999"
-                fontWeight={700}
-                textTransform="uppercase"
-              >
-                subtotal
-              </Typography>
-            </th>
-            <th />
-          </tr>
-        </thead>
-        <tbody>
-          {data.moviesInCart.map((i) => (
-            <tr key={i.id}>
-              <td
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 52,
-                  width: "fit-content",
-                  paddingBottom: 21,
-                }}
-              >
-                <Image src={i.image} alt={i.title} width={89} height={114} />
-                <Stack>
-                  <Typography fontWeight={700}>{i.title}</Typography>
-                  <Typography fontSize={16} fontWeight={700}>
-                    R$ {formatPrice(i.price)}
-                  </Typography>
-                </Stack>
-              </td>
-              <td style={{ paddingBottom: 21 }}>
-                <Counter
-                  value={i.quantity_in_shopping_cart}
-                  handleChange={(e) => addItemInCart(i, e)}
-                />
-              </td>
-              <td style={{ paddingBottom: 21 }}>
-                <Typography fontSize={16} fontWeight={700}>
-                  R$ {formatPrice(i.price * i.quantity_in_shopping_cart)}
-                </Typography>
-              </td>
-              <td style={{ paddingBottom: 21 }}>
-                <Stack cursorPointer onClick={() => removeItem(i)}>
-                  <Trash />
-                </Stack>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    );
-  };
 
   return !loading ? (
     data.moviesInCart.length > 0 ? (
@@ -106,7 +26,11 @@ const GridOrder: React.FC = () => {
         backgroundColor="#fff"
         justifyContent="space-between"
       >
-        <Table />
+        <Table
+          data={data.moviesInCart}
+          addItemInCart={addItemInCart}
+          removeItem={removeItem}
+        />
 
         <Stack className="items-mobile" gap={1.313}>
           {data.moviesInCart.map((i) => (

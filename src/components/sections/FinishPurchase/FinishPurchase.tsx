@@ -3,9 +3,9 @@ import { useRouter } from "next/navigation";
 import useMovies from "@/hooks/useMovies";
 import Typography from "@/components/common/Typography";
 import Button from "@/components/common/Button";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 import ConfirmPurchase from "../../../../public/icons/ConfirmPurchase";
 import { Container } from "./FinishPurchase.styled";
-import LoadingSpinner from "@/components/common/LoadingSpinner";
 
 const FinishPurchase: React.FC = () => {
   const { push } = useRouter();
