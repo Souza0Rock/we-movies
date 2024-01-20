@@ -1,52 +1,52 @@
 {
   "products": [
     {
-      "title": "Viúva Negra",
+      "id": "1",
       "price": 9.99,
-      "image": "https://wefit-react-web-test.s3.amazonaws.com/viuva-negra.png",
+      "title": "Viúva Negra",
       "in_shopping_cart": false,
       "quantity_in_shopping_cart": 0,
-      "id": "1"
+      "image": "https://wefit-react-web-test.s3.amazonaws.com/viuva-negra.png"
     },
     {
-      "title": "Shang-chi",
+      "id": "2",
       "price": 30.99,
-      "image": "https://wefit-react-web-test.s3.amazonaws.com/shang-chi.png",
-      "quantity_in_shopping_cart": 1,
-      "in_shopping_cart": true,
-      "id": "2"
+      "title": "Shang-chi",
+      "in_shopping_cart": false,
+      "quantity_in_shopping_cart": 0,
+      "image": "https://wefit-react-web-test.s3.amazonaws.com/shang-chi.png"
     },
     {
-      "title": "Homem Aranha",
+      "id": "3",
       "price": 29.9,
-      "image": "https://wefit-react-web-test.s3.amazonaws.com/spider-man.png",
+      "title": "Homem Aranha",
       "in_shopping_cart": false,
       "quantity_in_shopping_cart": 0,
-      "id": "3"
+      "image": "https://wefit-react-web-test.s3.amazonaws.com/spider-man.png"
     },
     {
-      "title": "Eternos",
+      "id": "4",
       "price": 17.9,
-      "image": "https://wefit-react-web-test.s3.amazonaws.com/eternals.png",
+      "title": "Eternos",
       "in_shopping_cart": false,
       "quantity_in_shopping_cart": 0,
-      "id": "4"
+      "image": "https://wefit-react-web-test.s3.amazonaws.com/eternals.png"
     },
     {
-      "title": "Morbius",
+      "id": "5",
       "price": 1.5,
-      "image": "https://wefit-react-web-test.s3.amazonaws.com/morbius-1.png",
+      "title": "Morbius",
       "in_shopping_cart": false,
       "quantity_in_shopping_cart": 0,
-      "id": "5"
+      "image": "https://wefit-react-web-test.s3.amazonaws.com/morbius-1.png"
     },
     {
-      "title": "Batman",
+      "id": "6",
       "price": 21.9,
-      "image": "https://wefit-react-web-test.s3.amazonaws.com/the-batman.png",
+      "title": "Batman",
       "in_shopping_cart": false,
       "quantity_in_shopping_cart": 0,
-      "id": "6"
+      "image": "https://wefit-react-web-test.s3.amazonaws.com/the-batman.png"
     }
   ]
 }

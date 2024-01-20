@@ -29,15 +29,13 @@ const useMovies = () => {
       setMoviesInCart(itemsInCart);
 
       setItemsInCart(itemsInCart.length);
-
-      setLoading(false);
     } catch (error) {
       setLoading(false);
       console.log(error);
     } finally {
       setLoading(false);
     }
-  }, [movies.length, setItemsInCart]);
+  }, [movies, setItemsInCart]);
 
   const priceTotalCart = moviesInCart.reduce(
     (total, objeto) => total + objeto.price * objeto.quantity_in_shopping_cart,
@@ -46,7 +44,8 @@ const useMovies = () => {
 
   useEffect(() => {
     fetchMovies();
-  }, [fetchMovies, trigger]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [trigger]);
 
   const clearCart = () => {
     const loopMovies = moviesInCart.map((movie) => {
