@@ -27,9 +27,16 @@ const Header: React.FC = () => {
         alignItems="center"
         flexDirection="row"
         onClick={() => push("/carrinho")}
+        className="box-my-cart"
+        // cursorPointer
       >
         <Stack alignItems="flex-end">
-          <Typography color="#fff" fontWeight={600} className="text-my-cart">
+          <Typography
+            // cursorPointer
+            color="#fff"
+            fontWeight={600}
+            className="text-my-cart"
+          >
             Meu Carrinho
           </Typography>
           <Typography color="#999" fontWeight={600}>

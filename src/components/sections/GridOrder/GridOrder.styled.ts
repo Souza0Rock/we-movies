@@ -37,3 +37,12 @@ export const Container = styled(Stack)`
     margin: 0 6.25rem;
   }
 `;
+
+export const RemoveButton = styled(Stack)`
+  transition: 200ms;
+  border-radius: 50%;
+
+  &:hover {
+    box-shadow: 0px 0px 4px 8px rgba(0, 0, 0, 0.05);
+  }
+`;

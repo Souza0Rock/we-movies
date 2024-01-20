@@ -14,6 +14,12 @@ export const Container = styled(Stack)`
     display: none;
   }
 
+  .box-my-cart {
+    * {
+      cursor: pointer;
+    }
+  }
+
   @media (min-width: 992px) {
     padding: 1.125rem 15.313rem;
 

@@ -4,6 +4,7 @@ import Stack from "../Stack";
 export const CountButton = styled(Stack)`
   cursor: pointer;
   border-radius: 50%;
+  transition: 0.3s;
 
   &:hover {
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.3);
