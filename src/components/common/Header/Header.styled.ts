@@ -10,6 +10,8 @@ export const TextLink = styled(Link)`
 `;
 
 export const Container = styled(Stack)`
+  z-index: 9999;
+
   .text-my-cart {
     display: none;
   }

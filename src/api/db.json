@@ -17,12 +17,12 @@
       "image": "https://wefit-react-web-test.s3.amazonaws.com/shang-chi.png"
     },
     {
-      "id": "3",
       "price": 29.9,
       "title": "Homem Aranha",
-      "in_shopping_cart": false,
-      "quantity_in_shopping_cart": 0,
-      "image": "https://wefit-react-web-test.s3.amazonaws.com/spider-man.png"
+      "image": "https://wefit-react-web-test.s3.amazonaws.com/spider-man.png",
+      "quantity_in_shopping_cart": 1,
+      "in_shopping_cart": true,
+      "id": "3"
     },
     {
       "id": "4",
