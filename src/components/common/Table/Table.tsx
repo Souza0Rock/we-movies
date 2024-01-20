@@ -1,4 +1,5 @@
 import React from "react";
+import { Cell, HeadCell } from "./Table.styled";
 import Typography from "../Typography";
 
 const Table: React.FC<ITableProps> = ({ data, collumns }) => {
@@ -12,11 +13,7 @@ const Table: React.FC<ITableProps> = ({ data, collumns }) => {
       <thead>
         <tr>
           {headers.map((header, index) => (
-            <th
-              key={index}
-              align="left"
-              style={{ width: header.width, paddingBottom: 21 }}
-            >
+            <HeadCell key={index} align="left" width={header.width}>
               <Typography
                 color="#999"
                 fontWeight={700}
@@ -24,7 +21,7 @@ const Table: React.FC<ITableProps> = ({ data, collumns }) => {
               >
                 {header.header}
               </Typography>
-            </th>
+            </HeadCell>
           ))}
         </tr>
       </thead>
@@ -34,9 +31,9 @@ const Table: React.FC<ITableProps> = ({ data, collumns }) => {
           return (
             <tr key={item.id}>
               {collumns.map((row, index) => (
-                <td key={index} style={{ paddingBottom: 21, width: row.width }}>
+                <Cell key={index} width={row.width}>
                   {row.renderCell(item)}
-                </td>
+                </Cell>
               ))}
             </tr>
           );
