@@ -6,8 +6,8 @@ import Stack from "@/components/common/Stack";
 import CardMovie from "@/components/common/CardMovie";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
 
-const GridCardsMovies: React.FC = () => {
-  const { data, addItemInCart, loading } = useMovies();
+const GridCardsMovies: React.FC<{ dataMovies: TMovie[] }> = ({ dataMovies }) => {
+  const { data, addItemInCart, loading } = useMovies({ dataInitial: dataMovies });
 
   return loading ? (
     <LoadingSpinner />

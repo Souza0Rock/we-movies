@@ -16,9 +16,12 @@ import Image from "next/image";
 import Counter from "@/components/common/Counter";
 import Trash from "../../../../public/icons/Trash";
 
-const GridOrder: React.FC = () => {
+const GridOrder: React.FC<{ dataMovies: TMovie[] }> = ({ dataMovies }) => {
   const { push } = useRouter();
-  const { data, loading, removeItem, addItemInCart } = useMovies();
+
+  const { data, loading, removeItem, addItemInCart } = useMovies({
+    dataInitial: dataMovies,
+  });
 
   const collumns: TCollumn[] = [
     {

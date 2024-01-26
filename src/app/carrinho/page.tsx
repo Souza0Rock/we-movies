@@ -1,5 +1,8 @@
 import GridOrder from "@/components/sections/GridOrder";
+import { getMovies } from "@/services/fetch/getMovies";
 
 export default async function Cart() {
-  return <GridOrder />;
+  const data = await getMovies();
+
+  return <GridOrder dataMovies={data} />;
 }

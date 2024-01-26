@@ -3,16 +3,13 @@ import { useGlobalData } from "@/contexts/globalData";
 import { getMovies } from "@/services/fetch/getMovies";
 import { putMovie } from "@/services/fetch/putMovie";
 
-const useMovies = () => {
+const useMovies = ({ dataInitial }: { dataInitial: TMovie[] }) => {
   const { setItemsInCart } = useGlobalData();
 
   const [loading, setLoading] = useState(false);
 
-  const [movies, setMovies] = useState<TMovie[]>([]);
+  const [movies, setMovies] = useState<TMovie[]>(dataInitial);
   const [moviesInCart, setMoviesInCart] = useState<TMovie[]>([]);
-  const [trigger, setTrigger] = useState(false);
-
-  const dispatchTrigger = () => setTrigger(!trigger);
 
   const fetchMovies = useCallback(async () => {
     movies.length === 0 && setLoading(true);
@@ -37,15 +34,26 @@ const useMovies = () => {
     }
   }, [movies, setItemsInCart]);
 
+  const fetchPutMovie = useCallback(async (payload: TMovie) => {
+    try {
+      await putMovie(payload);
+
+      fetchMovies()
+    } catch (error) {
+      console.log(error)
+    }
+  }, [fetchMovies]);
+
   const priceTotalCart = moviesInCart.reduce(
-    (total, objeto) => total + objeto.price * objeto.quantity_in_shopping_cart,
+    (total, object) => total + object.price * object.quantity_in_shopping_cart,
     0
   );
 
   useEffect(() => {
-    fetchMovies();
+    const itemsInCartInitial = dataInitial.filter((i) => i.in_shopping_cart);
+    setMoviesInCart(itemsInCartInitial);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [trigger]);
+  }, []);
 
   const clearCart = () => {
     const loopMovies = moviesInCart.map((movie) => {
@@ -74,7 +82,6 @@ const useMovies = () => {
 
     try {
       putMovie(payload);
-      dispatchTrigger();
     } catch (error) {
       console.log(error);
     }
@@ -90,8 +97,7 @@ const useMovies = () => {
     };
 
     try {
-      putMovie(payload);
-      dispatchTrigger();
+      fetchPutMovie(payload);
     } catch (error) {
       console.log(error);
     }
@@ -100,9 +106,7 @@ const useMovies = () => {
   return {
     clearCart,
     removeItem,
-    fetchMovies,
     addItemInCart,
-    dispatchTrigger,
     loading,
     data: {
       movies,

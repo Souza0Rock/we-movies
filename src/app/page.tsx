@@ -1,5 +1,8 @@
 import GridCardsMovies from "@/components/sections/GridCardsMovies";
+import { getMovies } from "@/services/fetch/getMovies";
 
 export default async function Home() {
-  return <GridCardsMovies />;
+  const data = await getMovies();
+
+  return <GridCardsMovies dataMovies={data} />;
 }
