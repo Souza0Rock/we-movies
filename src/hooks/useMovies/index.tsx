@@ -3,12 +3,12 @@ import { useGlobalData } from "@/contexts/globalData";
 import { getMovies } from "@/services/fetch/getMovies";
 import { putMovie } from "@/services/fetch/putMovie";
 
-const useMovies = ({ dataInitial }: { dataInitial: TMovie[] }) => {
+const useMovies = ({ dataInitial = [] }: { dataInitial?: TMovie[] } = {}) => {
   const { setItemsInCart } = useGlobalData();
 
   const [loading, setLoading] = useState(false);
 
-  const [movies, setMovies] = useState<TMovie[]>(dataInitial);
+  const [movies, setMovies] = useState<TMovie[]>(dataInitial ?? []);
   const [moviesInCart, setMoviesInCart] = useState<TMovie[]>([]);
 
   const fetchMovies = useCallback(async () => {
@@ -25,51 +25,32 @@ const useMovies = ({ dataInitial }: { dataInitial: TMovie[] }) => {
       const itemsInCart = data.filter((i) => i.in_shopping_cart);
       setMoviesInCart(itemsInCart);
 
-      setItemsInCart(itemsInCart.length);
+      return data;
     } catch (error) {
       setLoading(false);
       console.log(error);
     } finally {
       setLoading(false);
     }
-  }, [movies, setItemsInCart]);
+  }, [movies]);
 
-  const fetchPutMovie = useCallback(async (payload: TMovie) => {
-    try {
-      await putMovie(payload);
+  const fetchPutMovie = useCallback(
+    async (payload: TMovie) => {
+      try {
+        await putMovie(payload);
 
-      fetchMovies()
-    } catch (error) {
-      console.log(error)
-    }
-  }, [fetchMovies]);
+        fetchMovies();
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [fetchMovies]
+  );
 
   const priceTotalCart = moviesInCart.reduce(
     (total, object) => total + object.price * object.quantity_in_shopping_cart,
     0
   );
-
-  useEffect(() => {
-    const itemsInCartInitial = dataInitial.filter((i) => i.in_shopping_cart);
-    setMoviesInCart(itemsInCartInitial);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const clearCart = () => {
-    const loopMovies = moviesInCart.map((movie) => {
-      const { in_shopping_cart, quantity_in_shopping_cart, ...prev } = movie;
-
-      putMovie({
-        in_shopping_cart: false,
-        quantity_in_shopping_cart: 0,
-        ...prev,
-      });
-    });
-
-    setItemsInCart(0);
-
-    return loopMovies;
-  };
 
   const removeItem = async (data: TMovie) => {
     const { quantity_in_shopping_cart, ...prev } = data;
@@ -81,7 +62,7 @@ const useMovies = ({ dataInitial }: { dataInitial: TMovie[] }) => {
     };
 
     try {
-      putMovie(payload);
+      fetchPutMovie(payload);
     } catch (error) {
       console.log(error);
     }
@@ -102,6 +83,39 @@ const useMovies = ({ dataInitial }: { dataInitial: TMovie[] }) => {
       console.log(error);
     }
   };
+
+  const clearCart = async () => {
+    await fetchMovies().then((res) => {
+      const itemsInCart = res.filter((i) => i.in_shopping_cart);
+
+      const loopMovies = itemsInCart.map((movie) => {
+        const { in_shopping_cart, quantity_in_shopping_cart, ...prev } = movie;
+
+        putMovie({
+          in_shopping_cart: false,
+          quantity_in_shopping_cart: 0,
+          ...prev,
+        });
+
+        setItemsInCart(0);
+      });
+
+      return loopMovies;
+    });
+  };
+
+  useEffect(() => {
+    if (dataInitial) {
+      const itemsInCartInitial = dataInitial.filter((i) => i.in_shopping_cart);
+      setMoviesInCart(itemsInCartInitial);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    setItemsInCart(moviesInCart.length);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [moviesInCart]);
 
   return {
     clearCart,
